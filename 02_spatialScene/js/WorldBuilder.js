@@ -56,7 +56,7 @@ var WorldBuilder = function()
   }
 
   //ADD KEY LISTENERS
-  self.onKeyDown = function(event)
+  var onKeyDown = function(event)
   {
     console.log("key pressed:",event.keyCode);
     switch(event.keyCode)
@@ -73,13 +73,13 @@ var WorldBuilder = function()
 
   }
 
-  self.onKeyUp = function(event)
+  var onKeyUp = function(event)
   {
     console.log("key released:",event.keyCode);
   }
 
-  document.addEventListener('keydown', self.onKeyDown, false);
-  document.addEventListener('keyup', self.onKeyUp, false);
+  document.addEventListener('keydown', onKeyDown, false);
+  document.addEventListener('keyup', onKeyUp, false);
 
   return self;
 }

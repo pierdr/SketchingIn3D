@@ -1,4 +1,3 @@
-$(function(){
 
   //OBJECT VARIABLES
   const world = new WorldBuilder();
@@ -6,5 +5,3 @@ $(function(){
   //CALL FUNCTIONS
   world.setup();
   world.animate();
-
-});

@@ -37,6 +37,7 @@ var WorldBuilder = function()
       }
     }
 
+
     self.camera.position.x = 5;
     self.camera.position.y = 5;
     self.camera.position.z = 5;
@@ -56,8 +57,7 @@ var WorldBuilder = function()
   }
 
   //HANDLE MOUSE INTERACTION
-
-  document.addEventListener("mousemove", function (e) {
+  var onMouseMove = function (e) {
 
     var pointer = new THREE.Vector2(e.x,e.y);
 
@@ -67,17 +67,19 @@ var WorldBuilder = function()
 
     self.raycaster.setFromCamera( pointer, self.camera );
     const intersections = self.raycaster.intersectObjects( self.scene.children );
-    console.log("intersection");
-    // console.log(intersections.length);
+
+
     for ( let i = 0; i < elements.length; i ++ ) {
       elements[ i ].mesh.material.color.set( 0x025974 );
     }
+    
     for ( let i = 0; i < intersections.length; i ++ ) {
       intersections[ i ].object.material.color.set( 0xff0000 );
     }
 
 
-  });
+  };
+  document.addEventListener("mousemove",onMouseMove );
 
   return self;
 }

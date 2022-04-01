@@ -1,4 +1,3 @@
-$(function(){
 
   //OBJECT VARIABLES
   const world = new WorldBuilder();
@@ -12,9 +11,7 @@ $(function(){
   var lilGUI = new GUI();
 
   var obj = {
+
   	randomizeCameraPosition: function() { world.randomizeCameraPosition() }
   }
-
   lilGUI.add( obj, 'randomizeCameraPosition' ); 	// button
-
-});

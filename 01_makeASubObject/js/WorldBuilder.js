@@ -10,6 +10,7 @@ var WorldBuilder = function()
 
   self.blocks = [];
 
+  self.posX = 10;
   //WORLD SETUP
   self.setup = function()
   {
@@ -28,7 +29,7 @@ var WorldBuilder = function()
         var blockTmp = new Block();
         blockTmp.init();
         blockTmp.move(i,j,0);
-        self.scene.add( blockTmp.cube );
+        self.scene.add( blockTmp.mesh );
         self.blocks.push(blockTmp);
       }
     }
@@ -42,11 +43,13 @@ var WorldBuilder = function()
   //WORLD LOOP
   self.animate = function()
   {
-    self.renderer.render( self.scene, self.camera );
+
     for(var key in self.blocks)
     {
       self.blocks[key].rotate(0.01,0,0.01);
     }
+
+    self.renderer.render( self.scene, self.camera );
     //This line assures that animate is called at each Animation Frame
     requestAnimationFrame( self.animate );
   }

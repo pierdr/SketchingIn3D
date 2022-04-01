@@ -33,6 +33,7 @@ var WorldBuilder = function()
     //NOTE: if the object already has a texture, make sure that the image is in the same path to the 3d model (better if kept in the same folder)
     //if the object has the texture pass undefined in the 5th argument in this method
     //otherwise pass your own material
+    const materialCone = new THREE.MeshBasicMaterial( {color: 0x5CB9FF,wireframe:false} );
     self.centerObject.loadObjectWithMaterial(0,0,0,"data/mac.glb",undefined, function(obj){
       obj.scale.set(25.0,25.0,25.0);
       self.scene.add(obj);

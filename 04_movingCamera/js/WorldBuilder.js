@@ -62,8 +62,9 @@ var WorldBuilder = function()
   //WORLD LOOP
   self.animate = function()
   {
-    self.renderer.render( self.scene, self.camera );
     self.updateCameraPosition();
+
+    self.renderer.render( self.scene, self.camera );
     //This line assures that animate is called at each Animation Frame
     requestAnimationFrame( self.animate );
   }
@@ -71,7 +72,6 @@ var WorldBuilder = function()
   //ADD KEY LISTENERS
   self.onKeyDown = function(event)
   {
-    console.log("key pressed:",event.keyCode);
     switch(event.keyCode)
     {
       case 38:
@@ -105,11 +105,7 @@ var WorldBuilder = function()
   var startPosition = new THREE.Vector3();
   var targetPosition= new THREE.Vector3();
 
-  var startQuaternion = new THREE.Quaternion();
-  var targetQuaternion = new THREE.Quaternion();
 
-  var startRotation = new THREE.Vector3();
-  var targetRotation = new THREE.Vector3();
 
   self.randomizeCameraPosition = function()
   {
@@ -124,20 +120,6 @@ var WorldBuilder = function()
     targetPosition.y = self.camera.position.y;
     targetPosition.z = ((Math.random()-0.5)*2)*(5*125);
 
-    //SAVE ROTATION
-    // startQuaternion = new THREE.Quaternion().copy( self.camera.quaternion );
-    // self.camera.position.x = targetPosition.x;
-    // self.camera.position.y = targetPosition.y;
-    // self.camera.position.z = targetPosition.z;
-    // self.camera.lookAt(new THREE.Vector3(0,0,0));
-    // endQuaternion = new THREE.Quaternion().copy( self.camera.quaternion );
-
-
-    //RESET TO START POSITION
-    // self.camera.applyQuaternion(startQuaternion);
-    self.camera.position.x = startPosition.x;
-    self.camera.position.y = startPosition.y;
-    self.camera.position.z = startPosition.z;
 
 
     //START UPDATING
@@ -148,7 +130,7 @@ var WorldBuilder = function()
   self.updateCameraPosition = function(){
     if(isCameraMoving)
     {
-      movementFactor +=  0.01 ;
+      movementFactor +=  0.005 ;
       let expFactor = movementFactor;
 
       //INTERPOLATE POSITION
@@ -156,8 +138,6 @@ var WorldBuilder = function()
       self.camera.position.y = startPosition.y * (1-expFactor) + targetPosition.y * expFactor;
       self.camera.position.z = startPosition.z * (1-expFactor) + targetPosition.z * expFactor;
 
-      //INTERPOLATE ROTATION
-      // THREE.Quaternion.slerp(startQuaternion, targetQuaternion, self.camera.quaternion, expFactor);
 
       //CHECK IF ANIMATION IS FINISHED
       if( movementFactor>=1.0)
