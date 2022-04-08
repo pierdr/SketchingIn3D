@@ -10,8 +10,6 @@ var WorldBuilder = function()
   self.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
   self.renderer = new THREE.WebGLRenderer();
 
-  self.walls = [];
-  self.floor = {};
 
   //GESTURE VARIABLES
   var startX;
@@ -121,7 +119,7 @@ var WorldBuilder = function()
     e.preventDefault();
 
     if (e.ctrlKey) {
-      scale -= e.deltaY * 0.01;
+      scaleCamera -= e.deltaY * 0.01;
     } else {
       posX -= e.deltaX * 2;
       posY -= e.deltaY * 2;
