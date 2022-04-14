@@ -75,6 +75,7 @@ var WorldBuilder = function()
   }
   var onMouseUp = function(event)
   {
+    //
     document.getElementsByTagName("canvas")[0].requestPointerLock();
   }
 
